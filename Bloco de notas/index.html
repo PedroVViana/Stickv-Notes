@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickv Notes</title>
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="notes">
+            <div id="create">
+                <ion-icon name="add-sharp"></ion-icon>
+                <div class="createBox">
+                    <div class="innerCreateBox">
+                        <textarea placeholder="Write Here..." id="userInput" maxlength="160"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let createBox = document.getElementsByClassName('createBox')[0];
+        let notes = document.getElementsByClassName('notes')[0];
+        let input = document.getElementById('userInput');
+        let i = 0;
+
+        createBox.addEventListener("keydown", content);
+
+        document.getElementById("create").addEventListener("click", 
+        function(){
+            createBox.style.display = "block";
+        });
+
+        function content(e){
+            if(e.keyCode == '13'){
+                divStyle(input.value);
+                input.value="";
+                createBox.style.display = "none";
+            }
+        }
+
+        function divStyle(text){
+            let div = document.createElement("div");
+            div.className = 'note';
+            div.innerHTML = '<div class="details">'+'<h3>'+text+'<h3>'+'</div>'
+
+            div.addEventListener("dblclick", function(){
+                div.remove();
+            })
+
+            notes.appendChild(div);
+        }
+
+
+    </script>
+</body>
+</html>
